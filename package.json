@@ -1,0 +1,24 @@
+{
+  "name": "quiz-backend-nodejs",
+  "version": "1.0.0",
+  "description": "Backend para aplicación de Quiz realizada en NodeJS y MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmorales1991/quiz-backend-nodejs.git"
+  },
+  "keywords": [
+    "nodejs",
+    "backend",
+    "mongodb"
+  ],
+  "author": "Nicolás Morales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmorales1991/quiz-backend-nodejs/issues"
+  },
+  "homepage": "https://github.com/nmorales1991/quiz-backend-nodejs#readme"
+}
