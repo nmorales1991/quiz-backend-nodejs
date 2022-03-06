@@ -2,9 +2,12 @@
   "name": "quiz-backend-nodejs",
   "version": "1.0.0",
   "description": "Backend para aplicación de Quiz realizada en NodeJS y MongoDB",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "linter-show": "npx eslint src/**",
+    "linter": "npx eslint src/** --fix",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,14 @@
   "bugs": {
     "url": "https://github.com/nmorales1991/quiz-backend-nodejs/issues"
   },
-  "homepage": "https://github.com/nmorales1991/quiz-backend-nodejs#readme"
+  "homepage": "https://github.com/nmorales1991/quiz-backend-nodejs#readme",
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "prettier": "2.5.1"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
