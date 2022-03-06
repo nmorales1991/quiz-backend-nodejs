@@ -6,7 +6,7 @@ class UserController {
       const userService = new UserService();
       const result = await userService.getAllUsers();
       if (result.length === 0) {
-        return response.status(500).send({ data: result, message: 'No existen usuarios registrados' });
+        return response.status(400).json({ data: result, message: 'No existen usuarios registrados' });
       }
       return response.status(200).json({ data: result, message: 'Usuarios obtenidos con éxito' });
     } catch (e) {
