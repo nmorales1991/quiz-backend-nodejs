@@ -1,12 +1,18 @@
+require('dotenv').config();
 const express = require('express');
+const config = require('./config/config');
 
 const app = express();
-const port = 3000;
+
+require('./config/connection');
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(config.port, () => {
+  console.log(`Example app listening on port ${config.port}`);
 });
