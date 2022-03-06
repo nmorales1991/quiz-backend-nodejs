@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const config = require('./config');
+const { databaseUrl } = require('./config');
 
-mongoose.connect(config.databaseUrl, {
+mongoose.connect(databaseUrl, {
   useNewUrlParser: true, useUnifiedTopology: true,
 }, (err, res) => {
   if (err) throw err;
