@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const UserModel = require('../models/UserModel');
-const config = require('../config/config');
+const { secret, expires } = require('../config/config');
 
 class LoginService {
   async login(email, password) {
@@ -23,8 +23,8 @@ class LoginService {
       {
         user,
       },
-      config.secret,
-      { expiresIn: config.expires },
+      secret,
+      { expiresIn: expires },
     );
 
     const response = {
