@@ -14,6 +14,19 @@ class QuestionController {
       return response.status(400).json({ message: e.message });
     }
   }
+
+  async getQuestions(request, response) {
+    try {
+      const questionService = new QuestionService();
+      const result = await questionService.getQuestions();
+      if (result.length > 0) {
+        return response.status(200).json({ data: result, message: 'Listado de preguntas' });
+      }
+      return response.status(400).json({ message: 'No existen preguntas' });
+    } catch (e) {
+      return response.status(400).json({ message: e.message });
+    }
+  }
 }
 
 module.exports = QuestionController;

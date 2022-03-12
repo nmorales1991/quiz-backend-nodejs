@@ -9,7 +9,7 @@ const authorization = require('../middlewares/authorization');
 const app = express();
 
 app.use('/server/users', [authentication, authorization], Users);
-app.use('/server/questions', [authentication, authorization], Questions);
+app.use('/server/questions', authentication, Questions);
 app.use('/server/login', Login);
 
 module.exports = app;
