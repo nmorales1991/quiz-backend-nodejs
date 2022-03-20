@@ -8,7 +8,7 @@ const answerSchema = new Schema({
   },
   userAnswers: [{
     questionId: { type: Schema.Types.ObjectId },
-    answerId: { type: Schema.Types.ObjectId },
+    answerId: { type: String },
     correct: { type: Boolean },
   }],
   average: {

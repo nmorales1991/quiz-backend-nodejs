@@ -14,6 +14,10 @@ class QuestionService {
   async getQuestions() {
     return QuestionModel.find({ status: true }, 'question alternatives.alternative alternatives.id');
   }
+
+  async getQuestionById(id) {
+    return QuestionModel.findById(id);
+  }
 }
 
 module.exports = QuestionService;
