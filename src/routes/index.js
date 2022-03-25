@@ -8,7 +8,8 @@ const authentication = require('../middlewares/authentication');
 const authorization = require('../middlewares/authorization');
 
 const app = express();
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use('/server/users', [authentication, authorization], Users);
 app.use('/server/questions', authentication, Questions);
 app.use('/server/answers', authentication, Answers);
