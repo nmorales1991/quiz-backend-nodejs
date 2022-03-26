@@ -28,6 +28,14 @@ class UserService {
     });
     return ({ data: response, message: 'Usuario agregado con éxito' });
   }
+
+  async getUserById(id) {
+    try {
+      return await UserModel.findById(id);
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 module.exports = UserService;
