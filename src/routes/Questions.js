@@ -7,5 +7,6 @@ const questionController = new QuestionController();
 
 router.post('/', authorization, questionController.createQuestion);
 router.get('/', questionController.getQuestions);
+router.get('/admin', questionController.getQuestionsAdmin);
 
 module.exports = router;

@@ -24,6 +24,10 @@ class AnswerService {
   async getAnswers() {
     return AnswerModel.find();
   }
+
+  async getAnswersByUser(id) {
+    return AnswerModel.find({ 'user._id': id });
+  }
 }
 
 module.exports = AnswerService;

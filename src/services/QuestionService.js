@@ -11,8 +11,12 @@ class QuestionService {
     return ({ data: response, message: 'Pregunta agregada con éxito' });
   }
 
-  async getQuestions() {
-    return QuestionModel.find({ status: true }, 'question alternatives.alternative alternatives.id');
+  async getQuestions(admin = false) {
+    let params = '';
+    if (!admin) {
+      params = 'question alternatives.alternative alternatives.id';
+    }
+    return QuestionModel.find({ status: true }, params);
   }
 
   async getQuestionById(id) {

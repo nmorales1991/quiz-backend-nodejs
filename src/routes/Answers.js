@@ -6,5 +6,6 @@ const answerController = new AnswerController();
 
 router.post('/', answerController.createAnswer);
 router.get('/', answerController.getAnswers);
+router.get('/user/:id', answerController.getAnswersByUser);
 
 module.exports = router;
