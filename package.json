@@ -4,7 +4,6 @@
   "description": "Backend para aplicación de Quiz realizada en NodeJS y MongoDB",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
     "linter-show": "npx eslint src/**",
     "linter": "npx eslint src/** --fix",
     "dev": "nodemon src/index.js",
@@ -29,9 +28,7 @@
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
-    "jest": "^27.5.1",
-    "prettier": "2.5.1",
-    "supertest": "^6.2.2"
+    "prettier": "2.5.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
