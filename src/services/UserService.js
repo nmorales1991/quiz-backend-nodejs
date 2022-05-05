@@ -36,6 +36,19 @@ class UserService {
       return null;
     }
   }
+
+  async deleteUser(id) {
+    try {
+      const user = await UserModel.findById(id);
+      if (!user) {
+        return ({ data: null, message: `Usuario ${id} no existe` });
+      }
+      await UserModel.findByIdAndUpdate(id, { status: false });
+      return ({ data: 'ok', message: `Usuario ${id} se eliminó` });
+    } catch (e) {
+      return ({ data: null, message: `ID ${id} no válido` });
+    }
+  }
 }
 
 module.exports = UserService;
