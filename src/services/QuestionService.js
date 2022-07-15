@@ -39,7 +39,7 @@ class QuestionService {
       await QuestionModel.findByIdAndUpdate(id, { status: false });
       return { data: 'ok', message: `Pregunta ${id} se eliminó` };
     } catch (e) {
-      return response.status(400).json({ message: `ID ${id} no válido` });
+      return { data: null, message: 'Algo ocurrió mal' };
     }
   }
 }
