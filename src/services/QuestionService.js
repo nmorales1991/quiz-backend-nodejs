@@ -1,5 +1,6 @@
 const shortid = require('shortid');
 const QuestionModel = require('../models/QuestionModel');
+const UserModel = require("../models/UserModel");
 
 class QuestionService {
   async createQuestion(question, alternatives) {
@@ -26,8 +27,20 @@ class QuestionService {
     return QuestionModel.findById(id);
   }
 
-  async updateQuestions(id) {
-    QuestionModel.findById(id);
+  async updateQuestions(question, alternatives, id) {
+    let countTrueAlternatives = 0;
+    alternatives.forEach((alternative) => {
+      if (alternative.correct) {
+        countTrueAlternatives += 1;
+      }
+    });
+    if (countTrueAlternatives !== 1) {
+      return { data: null, message: 'Ingrese bien las alternativas' };
+    }
+
+    const result = await QuestionModel.findByIdAndUpdate(id, { question, alternatives }, { new: true });
+
+    return { data: result, message: `Pregunta ${id} se actualizó` };
   }
 
   async deleteQuestion(id) {

@@ -9,5 +9,6 @@ router.post('/', authorization, questionController.createQuestion);
 router.get('/', questionController.getQuestions);
 router.get('/admin', questionController.getQuestionsAdmin);
 router.delete('/:id', questionController.deleteQuestion);
+router.put('/:id', questionController.updateQuestions);
 
 module.exports = router;
