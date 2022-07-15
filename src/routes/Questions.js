@@ -8,5 +8,6 @@ const questionController = new QuestionController();
 router.post('/', authorization, questionController.createQuestion);
 router.get('/', questionController.getQuestions);
 router.get('/admin', questionController.getQuestionsAdmin);
+router.delete('/:id', questionController.deleteQuestion);
 
 module.exports = router;
