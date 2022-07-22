@@ -53,17 +53,22 @@ class QuestionController {
   async updateQuestions(request, response) {
     try {
       const { question, alternatives } = request.body;
+      const { id } = request.params;
+      // llamar al servicio para buscar pregunta por id
+
       const questionService = new QuestionService();
+
       const result = await questionService.updateQuestions(
         question,
-        alternatives
+        alternatives,
+        id
       );
-      if (result.length > 0) {
-        return response
-          .status(200)
-          .json({ data: result, message: 'Listado de preguntas' });
+      if (!result.data) {
+        return response.status(400).json({ message: result.message });
       }
-      return response.status(400).json({ message: 'No existen preguntas' });
+      return response
+        .status(200)
+        .json({ data: result.data, message: result.message });
     } catch (e) {
       return response.status(400).json({ message: e.message });
     }
@@ -78,6 +83,21 @@ class QuestionController {
         return response.status(400).json({ message: result.message });
       }
       return response.status(200).json({ message: result.message });
+    } catch (e) {
+      return response.status(400).json({ message: e.message });
+    }
+  }
+  async getQuestionById(request, response) {
+    const { id } = request.params;
+    try {
+      const questionService = new QuestionService();
+      const result = await questionService.getQuestionById(id);
+      if (!result.data) {
+        return response.status(400).json({ message: result.message });
+      }
+      return response
+        .status(200)
+        .json({ data: result.data, message: result.message });
     } catch (e) {
       return response.status(400).json({ message: e.message });
     }

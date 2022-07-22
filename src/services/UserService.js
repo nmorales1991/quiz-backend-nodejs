@@ -11,12 +11,11 @@ class UserService {
   }
 
   async createUser(params) {
-    const {
-      email, password, role, name, fatherLastname, motherLastname,
-    } = params;
+    const { email, password, role, name, fatherLastname, motherLastname } =
+      params;
     const user = await UserModel.findOne({ email });
     if (user) {
-      return ({ data: null, message: `Usuario ${email} ya existe` });
+      return { data: null, message: `Usuario ${email} ya existe` };
     }
     const response = await UserModel.create({
       email,
@@ -26,7 +25,7 @@ class UserService {
       motherLastname,
       name,
     });
-    return ({ data: response, message: 'Usuario agregado con éxito' });
+    return { data: response, message: 'Usuario agregado con éxito' };
   }
 
   async getUserById(id) {
@@ -41,12 +40,12 @@ class UserService {
     try {
       const user = await UserModel.findById(id);
       if (!user) {
-        return ({ data: null, message: `Usuario ${id} no existe` });
+        return { data: null, message: `Usuario ${id} no existe` };
       }
       await UserModel.findByIdAndUpdate(id, { status: false });
-      return ({ data: 'ok', message: `Usuario ${id} se eliminó` });
+      return { data: 'ok', message: `Usuario ${id} se eliminó` };
     } catch (e) {
-      return ({ data: null, message: `ID ${id} no válido` });
+      return { data: null, message: `ID ${id} no válido` };
     }
   }
 }

@@ -1,5 +1,7 @@
+const { clearConfigCache } = require('prettier');
 const shortid = require('shortid');
 const QuestionModel = require('../models/QuestionModel');
+const UserModel = require('../models/UserModel');
 
 class QuestionService {
   async createQuestion(question, alternatives) {
@@ -22,12 +24,24 @@ class QuestionService {
     return QuestionModel.find({ status: true }, params);
   }
 
-  async getQuestionById(id) {
-    return QuestionModel.findById(id);
-  }
+  async updateQuestions(question, alternatives, id) {
+    let countTrueAlternatives = 0;
+    alternatives.forEach((alternative) => {
+      if (alternative.correct) {
+        countTrueAlternatives += 1;
+      }
+    });
+    if (countTrueAlternatives !== 1) {
+      return { data: null, message: 'Ingrese bien las alternativas' };
+    }
 
-  async updateQuestions(id) {
-    QuestionModel.findById(id);
+    const result = await QuestionModel.findByIdAndUpdate(
+      id,
+      { question, alternatives },
+      { new: true }
+    );
+
+    return { data: result, message: `Pregunta ${id} se actualizó` };
   }
 
   async deleteQuestion(id) {
@@ -41,6 +55,13 @@ class QuestionService {
     } catch (e) {
       return { data: null, message: 'Algo ocurrió mal' };
     }
+  }
+  async getQuestionById(id) {
+    const question = await QuestionModel.findById(id);
+    if (!question) {
+      return { data: null, message: 'No se pudo encontrar la pregunta' };
+    }
+    return { data: { question }, message: 'Pregunta Encontrada' };
   }
 }
 
