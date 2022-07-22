@@ -8,7 +8,7 @@ class QuestionController {
         const questionService = new QuestionService();
         const result = await questionService.createQuestion(
           question,
-          alternatives,
+          alternatives
         );
         return response.status(200).json(result);
       }
@@ -55,12 +55,20 @@ class QuestionController {
       const { question, alternatives } = request.body;
       const { id } = request.params;
       // llamar al servicio para buscar pregunta por id
+
       const questionService = new QuestionService();
-      const result = await questionService.updateQuestions(question, alternatives, id);
+
+      const result = await questionService.updateQuestions(
+        question,
+        alternatives,
+        id
+      );
       if (!result.data) {
         return response.status(400).json({ message: result.message });
       }
-      return response.status(200).json({ data: result.data, message: result.message });
+      return response
+        .status(200)
+        .json({ data: result.data, message: result.message });
     } catch (e) {
       return response.status(400).json({ message: e.message });
     }
@@ -75,6 +83,21 @@ class QuestionController {
         return response.status(400).json({ message: result.message });
       }
       return response.status(200).json({ message: result.message });
+    } catch (e) {
+      return response.status(400).json({ message: e.message });
+    }
+  }
+  async getQuestionById(request, response) {
+    const { id } = request.params;
+    try {
+      const questionService = new QuestionService();
+      const result = await questionService.getQuestionById(id);
+      if (!result.data) {
+        return response.status(400).json({ message: result.message });
+      }
+      return response
+        .status(200)
+        .json({ data: result.data, message: result.message });
     } catch (e) {
       return response.status(400).json({ message: e.message });
     }
